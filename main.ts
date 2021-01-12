@@ -1,4 +1,4 @@
-import { app, BrowserWindow, shell, screen, Menu, MenuItem } from 'electron';
+import { app, BrowserWindow, shell, screen, Menu, MenuItem, nativeImage } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
@@ -20,8 +20,10 @@ function createWindow() {
     minHeight: 600,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,  // TODO: change this once Spectron supports it
+      enableRemoteModule: true, // TODO: change this once Spectron supports it
     },
-    icon: 'src/assets/img/ac.png',
+    icon: nativeImage.createFromPath('src/assets/img/ac.png'),
   });
 
   if (serve) {
